@@ -1,0 +1,30 @@
+swagger: "2.0"
+info:
+    description: This is the main config file
+    version: "0.1"
+    title: OutGoing
+consumes:
+    - "application/json"
+produces:
+    - "application/json"
+
+
+basePath: "/api"
+
+paths:
+    /events:
+        get:
+            operationId: "events.read"
+            tags:
+                - "Events"
+            summary: "events endpoint"
+            description: "events endpoint"
+            responses:
+                200:
+                    description: "description here"
+                    schema:
+                        type: "object"
+                        items:
+                            properties:
+                                name:
+                                    type: "string"
