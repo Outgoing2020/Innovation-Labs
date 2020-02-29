@@ -21,10 +21,26 @@ paths:
             description: "events endpoint"
             responses:
                 200:
-                    description: "description here"
+                    description: "200 response"
                     schema:
                         type: "object"
                         items:
                             properties:
                                 name:
+                                    type: "string"
+    /users:
+        get:
+            operationId: "users.read"
+            tags:
+                - "Users"
+            summary: "users endpoint"
+            description: "users endpoint"
+            responses:
+                200:
+                    description: "200 response"
+                    schema:
+                        type: "object"
+                        items:
+                            properties:
+                                user:
                                     type: "string"

@@ -58,5 +58,6 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-# Python env
+# Python ignore
 backend/env
+backend/__pycache__
