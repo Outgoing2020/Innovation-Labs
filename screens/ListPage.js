@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   },
 });
 
-
 class ListPage extends Component {
+
    state = {
       names: [
          {
@@ -51,37 +51,54 @@ class ListPage extends Component {
             imageURL: 'https://firebasestorage.googleapis.com/v0/b/outgoing-c10ee.appspot.com/o/an_theos.jpg?alt=media&token=5afbd427-a181-4c6a-97fe-cccc899797fe'
          }
       ],
-      hits: []
+      hits: [],
+      elements: []
    }
    alertItemName = (item) => {
-      alert(item.name)
+      alert(item.name);
    }
 
    componentDidMount() {
-    fetch('http://dummy.restapiexample.com/api/v1/employees')
+    fetch('http://outgoing.pythonanywhere.com/events')
       .then(response => response.json())
-      .then(resp => this.setState({ hits: resp.data }) );
-  
+      .then(resp => this.setState({ hits: resp }) );
+    
+  }
+
+
+  createTable = () => {
+    console.log(this.state.hits)
+    for (var key in this.state.hits) {
+  if (!this.state.hits.hasOwnProperty(key)) continue;
+  console.log(key); 
+  console.log(this.state.hits[key].date);
+  this.state.elements.push({date: this.state.hits[key].date, 
+    id: this.state.hits[key].id,
+    imageURL: this.state.hits[key].imageURL,
+    link: this.state.hits[key].link,
+    name: this.state.hits[key].name,
+    review: this.state.hits[key].review,
+    score: this.state.hits[key].score
+  })
+}
   }
 
    render() {
 
-console.log(this.state.hits);
-
       return ( 
 
           <SafeAreaView style={styles.container}>
-
+          {this.createTable()}
       <ScrollView style={styles.scrollView}>
             {
-               this.state.names.map((item, index) => (
+               this.state.elements.map((item, index) => (
                   
                     <Card style={{ elevation: 3 }}>
                 <CardItem>
                   <Left>
                     <Body>
                       <Text>{item.name}</Text>
-                      <Text note>{item.price}</Text>
+                      <Text note>{item.date}</Text>
                     </Body>
                   </Left>
                 </CardItem>
